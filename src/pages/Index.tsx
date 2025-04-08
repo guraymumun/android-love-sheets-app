@@ -1,12 +1,39 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Capacitor } from '@capacitor/core';
 
 const Index = () => {
+  useEffect(() => {
+    // Initialize any native functionality here
+    document.title = "Lovable Android App Module";
+  }, []);
+
+  const openCheatSheets = () => {
+    if (Capacitor.isNativePlatform()) {
+      // Use the native browser to open the URL
+      window.open("https://www.lecturio.com/wl/nursing-cheat-sheets/?webview=1", "_system");
+    } else {
+      // Fallback for web
+      window.open("https://www.lecturio.com/wl/nursing-cheat-sheets/?webview=1", "_blank");
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
+      <Card className="w-full max-w-md p-6 shadow-lg">
+        <div className="bg-[#1379C8] p-6 mb-6 rounded-md">
+          <h1 className="text-white text-2xl font-bold text-center">Lovable Android App Module</h1>
+        </div>
+        
+        <Button 
+          className="w-full bg-[#1379C8] hover:bg-[#1167A8] text-white font-bold py-4 rounded"
+          onClick={openCheatSheets}
+        >
+          CHEAT SHEETS
+        </Button>
+      </Card>
     </div>
   );
 };
